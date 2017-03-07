@@ -9,7 +9,8 @@ import scala.concurrent.Future
 /**
   * Implementation of the ExplorersStreamService.
   */
-class ExplorersStreamServiceImpl(explorersService: ExplorersService) extends ExplorersStreamService {
+class ExplorersStreamServiceImpl(explorersService: ExplorersService)
+    extends ExplorersStreamService {
   def stream = ServiceCall { lss =>
     Future.successful(lss.mapAsync(8)(explorersService.ls(_).invoke()))
   }

@@ -15,7 +15,8 @@ class ExplorersStreamLoader extends LagomApplicationLoader {
       override def serviceLocator = NoServiceLocator
     }
 
-  override def loadDevMode(context: LagomApplicationContext): LagomApplication =
+  override def loadDevMode(
+      context: LagomApplicationContext): LagomApplication =
     new ExplorersStreamApplication(context) with LagomDevModeComponents
 
   override def describeServices = List(
@@ -24,7 +25,7 @@ class ExplorersStreamLoader extends LagomApplicationLoader {
 }
 
 abstract class ExplorersStreamApplication(context: LagomApplicationContext)
-  extends LagomApplication(context)
+    extends LagomApplication(context)
     with AhcWSComponents {
 
   // Bind the services that this server provides

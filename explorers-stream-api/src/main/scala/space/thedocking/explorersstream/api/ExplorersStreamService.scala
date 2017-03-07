@@ -3,6 +3,7 @@ package space.thedocking.explorersstream.api
 import akka.NotUsed
 import akka.stream.scaladsl.Source
 import com.lightbend.lagom.scaladsl.api.{Service, ServiceCall}
+import space.thedocking.explorers.api.FilesAndFoldersResult
 
 /**
   * The Explorers stream interface.
@@ -12,7 +13,8 @@ import com.lightbend.lagom.scaladsl.api.{Service, ServiceCall}
   */
 trait ExplorersStreamService extends Service {
 
-  def stream: ServiceCall[Source[String, NotUsed], Source[String, NotUsed]]
+  def stream: ServiceCall[Source[String, NotUsed],
+                          Source[FilesAndFoldersResult, NotUsed]]
 
   override final def descriptor = {
     import Service._
@@ -20,7 +22,7 @@ trait ExplorersStreamService extends Service {
     named("explorers-stream")
       .withCalls(
         namedCall("stream", stream)
-      ).withAutoAcl(true)
+      )
+      .withAutoAcl(true)
   }
 }
-
